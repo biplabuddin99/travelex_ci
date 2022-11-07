@@ -1,0 +1,18 @@
+<?php 
+
+class AdminController extends CI_Controller {
+	function __construct(){
+		parent::__construct();
+		/* authentication  */
+		if(!$this->session->get_userdata()['ud']){
+			redirect('login');
+		}
+	}
+	
+	public function authorization(){
+		/* authorization  */
+		if($this->session->get_userdata()['ud']->role_id !=1){
+			redirect('/');
+		}
+	}
+}
